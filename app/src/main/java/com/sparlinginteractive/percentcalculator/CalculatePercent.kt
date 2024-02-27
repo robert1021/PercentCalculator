@@ -7,7 +7,9 @@ class CalculatePercent {
         return (percent / 100) * amount
     }
 
-    fun calculatePercentDifference() {}
+    fun calculatePercentDifference(num1: Double, num2: Double): Double {
+        return ((num1 - num2) / ((num1 + num2) / 2)) * 100
+    }
 
     fun calculatePercentIncrease() {}
 
