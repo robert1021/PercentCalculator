@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonClearPercent1: Button
     private val calculatePercent = CalculatePercent()
     private lateinit var linearLayoutPercentDifference: LinearLayout
+    private lateinit var editTextValue1: EditText
+    private lateinit var editTextValue2: EditText
+    private lateinit var textViewPercentAnswer2: TextView
+    private lateinit var buttonCalculatePercent2: Button
+    private lateinit var buttonClearPercent2: Button
     private lateinit var linearLayoutPercentIncrease: LinearLayout
     private lateinit var linearLayoutPercentDecrease: LinearLayout
 
@@ -45,6 +50,12 @@ class MainActivity : AppCompatActivity() {
         buttonClearPercent1 = findViewById(R.id.buttonClearPercent1)
 
         linearLayoutPercentDifference = findViewById(R.id.linearLayoutPercentDifference)
+        editTextValue1 = findViewById(R.id.editTextValue1)
+        editTextValue2 = findViewById(R.id.editTextValue2)
+        textViewPercentAnswer2 = findViewById(R.id.textViewPercentAnswer2)
+        buttonCalculatePercent2 = findViewById(R.id.buttonCalculatePercent2)
+        buttonClearPercent2 = findViewById(R.id.buttonClearPercent2)
+
         linearLayoutPercentIncrease = findViewById(R.id.linearLayoutPercentIncrease)
         linearLayoutPercentDecrease = findViewById(R.id.linearLayoutPercentDecrease)
 
@@ -62,8 +73,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Buttons
         buttonCalculatePercent1.setOnClickListener {handleCalculatePercent1ButtonClick()}
         buttonClearPercent1.setOnClickListener {handleClearPercent1ButtonClick()}
+        buttonCalculatePercent2.setOnClickListener {handleCalculatePercent2ButtonClick()}
+        buttonClearPercent2.setOnClickListener {handleClearPercent2ButtonClick()}
 
     }
 
@@ -88,6 +102,28 @@ class MainActivity : AppCompatActivity() {
         textViewPercentAnswer.text = ""
     }
 
+    private fun handleCalculatePercent2ButtonClick() {
+        val value1: String = editTextValue1.text.toString()
+        val value2: String = editTextValue2.text.toString()
+
+        if (!TextUtils.isEmpty(value1) && !TextUtils.isEmpty(value2)) {
+            val answer: Double = calculatePercent.calculatePercentDifference(value1.toDouble(), value2.toDouble())
+
+            if (answer % 1.0 == 0.0) {
+                val formattedText = "${answer.toInt()}%"
+                textViewPercentAnswer2.text = formattedText
+            } else {
+                val formattedText = "${String.format("%.2f", answer)}%"
+                textViewPercentAnswer2.text = formattedText
+            }
+        }
+    }
+
+    private fun handleClearPercent2ButtonClick() {
+        editTextValue1.setText("")
+        editTextValue2.setText("")
+        textViewPercentAnswer2.text = ""
+    }
 
 
 }
