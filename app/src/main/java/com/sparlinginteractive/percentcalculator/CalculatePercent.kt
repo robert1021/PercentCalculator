@@ -12,9 +12,12 @@ class CalculatePercent {
         return (abs(num1 - num2) / ((num1 + num2) / 2)) * 100
     }
 
-    fun calculatePercentIncrease() {}
+    fun calculatePercentIncrease(originalValue: Double, newValue: Double): Double {
+        return ((newValue - originalValue) / originalValue) * 100
+    }
 
-    fun calculatePercentDecrease() {}
-
+    fun calculatePercentDecrease(originalValue: Double, newValue: Double): Double {
+        return ((originalValue - newValue) / originalValue) * 100
+    }
 
 }
